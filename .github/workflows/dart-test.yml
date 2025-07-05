@@ -1,0 +1,28 @@
+name: Dart Test
+
+on:
+  push:
+    branches:
+      - main
+      - v*
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      # 最初にリポジトリをチェックアウトする
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      # Flutterをインストールして依存関係を取得する
+      - name: install flutter(by fvm)
+        uses: ./.github/actions/install-flutter
+
+      # テスト
+      - name: dart test
+        run: |
+          dart pub get
+          dart analyze
+          dart format --set-exit-if-changed ./lib/
+          dart format --set-exit-if-changed ./test/
+          dart test ./test/
