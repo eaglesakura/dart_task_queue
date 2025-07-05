@@ -2,7 +2,7 @@
 
 import 'dart:math';
 
-import 'package:task_queue/task_queue.dart';
+import 'package:taskqueue/taskqueue.dart';
 import 'package:test/test.dart';
 
 void main() {

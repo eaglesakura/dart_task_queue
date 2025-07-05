@@ -14,6 +14,7 @@
         "**/*.freezed.dart"
     ],
     "words": [
-        "pubspec"
+        "pubspec",
+        "taskqueue"
     ]
 }
