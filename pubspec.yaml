@@ -1,7 +1,7 @@
 name: taskqueue
 description: |
   Light-Weight Task Queue for Dart.
-version: 1.0.0+1
+version: 1.0.0
 repository: https://github.com/eaglesakura/dart_task_queue
 
 environment:
