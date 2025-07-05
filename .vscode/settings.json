@@ -1,0 +1,22 @@
+{
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/.dart_tool": true,
+    "**/.fvm": true
+  },
+  "editor.formatOnSave": true,
+  "explorer.fileNesting.enabled": true,
+  "dart.flutterSdkPath": ".fvm/versions/3.32.1"
+}
