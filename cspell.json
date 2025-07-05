@@ -13,5 +13,7 @@
         "**/*.g.dart",
         "**/*.freezed.dart"
     ],
-    "words": []
+    "words": [
+        "pubspec"
+    ]
 }

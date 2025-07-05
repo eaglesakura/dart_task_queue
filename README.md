@@ -1,39 +1,76 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+順番を保ったタスク実行を可能にする軽量なキューイングシステムを提供する Dart パッケージです。非同期タスクの順序付き実行とタスクの完了待機をサポートします。
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- 非同期タスクの順序付き実行
+- タスクの完了待機
+- タスクキューの状態確認（isEmpty、isNotEmpty）
+- すべてのタスクの完了待機（join()メソッド）
+- 軽量で高性能な実装
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+`pubspec.yaml`にパッケージを追加してください：
+
+```yaml
+dependencies:
+  task_queue: ^1.0.0
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### 基本的な使用例
 
 ```dart
-const like = 'sample';
+import 'package:task_queue/task_queue.dart';
+
+void main() async {
+  final queue = TaskQueue();
+
+  // タスクを順次実行
+  final task1 = queue.queue(() async {
+    await Future.delayed(Duration(milliseconds: 300));
+    print('Task 1 completed');
+    return 1;
+  });
+
+  final task2 = queue.queue(() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    print('Task 2 completed');
+    return 2;
+  });
+
+  // 結果を取得（順番に実行されるため、1, 2の順で完了）
+  print('Result 1: ${await task1}'); // 1
+  print('Result 2: ${await task2}'); // 2
+}
+```
+
+### すべてのタスクの完了待機
+
+```dart
+void main() async {
+  final queue = TaskQueue();
+
+  // 複数のタスクを追加
+  for (int i = 0; i < 5; i++) {
+    queue.queue(() async {
+      await Future.delayed(Duration(milliseconds: 100));
+      print('Task $i completed');
+    });
+  }
+
+  // すべてのタスクが完了するまで待機
+  await queue.join();
+  print('All tasks completed');
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+このパッケージは、非同期処理の順序制御が必要なアプリケーションに最適です。
+
+- **リポジトリ**: https://github.com/eaglesakura/dart_task_queue
+- **イシュー**: バグ報告や機能要求は[GitHub Issues](https://github.com/eaglesakura/dart_task_queue/issues)まで
+- **貢献**: プルリクエストやイシューの報告を歓迎します
+- **ライセンス**: 詳細は LICENSE ファイルを参照してください
