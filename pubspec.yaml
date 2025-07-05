@@ -1,8 +1,7 @@
 name: task_queue
 description: |
-  順番を保ったタスク実行を可能にする軽量なキューイングシステムを提供するDartパッケージです。
-  非同期タスクの順序付き実行とタスクの完了待機をサポートします。
-version: 1.0.0
+  Light-Weight Task Queue for Dart.
+version: 1.0.0+1
 repository: https://github.com/eaglesakura/dart_task_queue
 
 environment:
